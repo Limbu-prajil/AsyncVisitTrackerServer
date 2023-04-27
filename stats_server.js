@@ -15,10 +15,8 @@ function requestListener(request, response) {
         if (error) throw error
         const count=JSON.parse(data);
         count.index += 1;
-        console.log('Count increased!');
         fs.writeFile('counter.json', JSON.stringify(count) , (error,data)=>{
           if (error) throw error
-          console.log('Count written!');
         });
         // You need to replace the '-!-' in index.html with
         // the new count before serving the document
@@ -27,7 +25,6 @@ function requestListener(request, response) {
           const indexSplit = data.split('-!-');
           const newIndexDocument=indexSplit[0]+count.index+indexSplit[1];
           response.writeHead(200);
-          console.log(newIndexDocument);
           response.end(newIndexDocument);
         })
       })
@@ -38,10 +35,8 @@ function requestListener(request, response) {
         if (error) throw error
         const count=JSON.parse(data);
         count.another+=1;
-        console.log('Count increased!');
         fs.writeFile('counter.json', JSON.stringify(count) , (error,data)=>{
           if (error) throw error
-          console.log('Count written!');
         });
         // You need to replace the '-!-' in another.html
         // the new count before serving the document
@@ -50,7 +45,6 @@ function requestListener(request, response) {
           const indexSplit = data.split('-!-');
           const newAnotherDocument=indexSplit[0]+count.another+indexSplit[1];
           response.writeHead(200);
-          console.log(newAnotherDocument);
           response.end(newAnotherDocument);
         })
       });
